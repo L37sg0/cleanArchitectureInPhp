@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  # PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${PROJECT_NAME}/php
+    container_name: ${PROJECT_NAME}_app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+  # NGINX Service
+  web:
+    image: nginx:alpine
+    container_name: ${PROJECT_NAME}_web
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+        - "80:80"
+
+  # MYSQL Service
+  db:
+    image: mysql:5.7
+    container_name: ${PROJECT_NAME}_db
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - type: volume
+        source: db
+        target: /var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+
+# DOCKER Volumes
+volumes:
+  db:
+    driver: local

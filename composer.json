@@ -1,0 +1,21 @@
+{
+    "name": "l37sg0/architecture",
+    "description": "Exercising on 'The Clean Architecture in PHP' by Kristopher Wilson.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "L37sg0\\Architecture\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Petar Ivanov",
+            "email": "petar.ivanov@l37sg0.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "peridot-php/peridot-watcher-plugin": "dev-master",
+        "peridot-php/peridot-prophecy-plugin": "dev-master"
+    }
+}

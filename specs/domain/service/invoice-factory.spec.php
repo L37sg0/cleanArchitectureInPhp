@@ -68,7 +68,7 @@ describe('InvoicingService', function () {
             $invoices = [(new Invoice())->setTotal(400)];
 
             $this->repository->getUnInvoicedOrders()->willReturn($orders);
-            $this->factory->createFromOrder($orders[0])->willReturn($invoices);
+            $this->factory->createFromOrder($orders[0])->willReturn($invoices[0]);
 
             $service = new InvoicingService($this->repository->reveal(), $this->factory->reveal());
             $results = $service->generateInvoices();

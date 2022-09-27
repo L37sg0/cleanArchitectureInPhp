@@ -12,7 +12,7 @@ class InvoicingService
 
     public function __construct(OrderRepositoryInterface $orderRepository, InvoiceFactory $invoiceFactory) {
         $this->orderRepository = $orderRepository;
-        $this->factory = $invoiceFactory;
+        $this->invoiceFactory = $invoiceFactory;
     }
 
     public function generateInvoices(): array {

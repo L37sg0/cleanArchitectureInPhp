@@ -16,7 +16,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
-    libzip-dev
+    libzip-dev \
+    sqlite3 \
+    php7.4-sqlite
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

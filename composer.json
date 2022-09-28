@@ -4,7 +4,8 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "L37sg0\\Architecture\\": "src/"
+            "L37sg0\\Architecture\\": "src/",
+            "Application\\": "module/Application/src/"
         }
     },
     "authors": [
@@ -17,5 +18,8 @@
     "require-dev": {
         "peridot-php/peridot-watcher-plugin": "dev-master",
         "peridot-php/peridot-prophecy-plugin": "dev-master"
+    },
+    "require": {
+        "zendframework/zendframework": "3.1.x-dev"
     }
 }

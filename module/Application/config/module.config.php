@@ -9,7 +9,6 @@ namespace Application;
 
 use Application\Controller\CustomersController;
 use Application\Controller\IndexController;
-use Application\Mvc\Controller\Plugin\CustomFlashMessengerFactory;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
 use Zend\Hydrator\ClassMethods;
@@ -17,7 +16,6 @@ use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
-use Application\Mvc\Controller\Plugin\CustomFlashMessenger;
 
 return [
     'router' => [

@@ -5,12 +5,14 @@
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" name="name" id="name"
-                placeholder="Enter Name">
+                placeholder="Enter Name" value="<?= $this->customer->getName() ?>">
+        <?= $this->validationErrors('name') ?>
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
         <input type="text" class="form-control" name="email" id="email"
-                placeholder="Enter Email">
+                placeholder="Enter Email" value="<?= $this->customer->getEmail() ?>">
+        <?= $this->validationErrors('email') ?>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>

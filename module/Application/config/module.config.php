@@ -9,6 +9,7 @@ namespace Application;
 
 use Application\Controller\CustomersController;
 use Application\Controller\IndexController;
+use Application\View\Helper\ValidationErrors;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
 use Zend\Hydrator\ClassMethods;
@@ -114,6 +115,11 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
+            'validationErrors' => ValidationErrors::class,
+        ]
     ],
     'controller_plugins' => [
         'factories' => [

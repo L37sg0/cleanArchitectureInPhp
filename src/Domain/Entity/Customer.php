@@ -4,11 +4,11 @@ namespace L37sg0\Architecture\Domain\Entity;
 
 class Customer extends AbstractEntity
 {
-    protected string $name;
+    protected $name;
 
-    protected string $email;
+    protected $email;
 
-    public function getName(): string {
+    public function getName() {
         return $this->name;
     }
 
@@ -17,8 +17,7 @@ class Customer extends AbstractEntity
         return $this;
     }
 
-    public function getEmail(): string
-    {
+    public function getEmail() {
         return $this->email;
     }
 

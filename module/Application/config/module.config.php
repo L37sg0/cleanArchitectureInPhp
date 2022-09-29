@@ -117,14 +117,6 @@ return [
             __DIR__ . '/../view',
         ],
     ],
-//    'controller_plugins' => [
-//        'factories' => [
-//            CustomFlashMessenger::class => InvokableFactory::class,
-//        ],
-//        'aliases' => [
-//            'flashmessenger' => CustomFlashMessenger::class,
-//        ]
-//    ],
     'controller_plugins' => [
         'factories' => [
             FlashMessenger::class => InvokableFactory::class,

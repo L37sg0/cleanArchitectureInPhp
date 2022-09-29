@@ -25,6 +25,7 @@ use Zend\Hydrator\ClassMethods;
 return [
     'service_manager' => [
         'factories' => [
+            Adapter::class => AdapterServiceFactory::class,
             CustomerTable::class    => function($sm) {
                 $factory    = new TableGatewayFactory();
                 $hydrator   = new ClassMethods();
@@ -36,7 +37,7 @@ return [
                         new Customer(),
                         'customers'
                     ),
-                $hydrator
+                    $hydrator
                 );
             },
             InvoiceTable::class     => function($sm) {
@@ -67,7 +68,6 @@ return [
                     $hydrator
                 );
             },
-            Adapter::class => AdapterServiceFactory::class,
         ],
     ]
 ];

@@ -20,7 +20,7 @@ abstract class AbstractDataTable implements RepositoryInterface
         $this->hydrator = $hydrator;
     }
 
-    public function getById(int $id)
+    public function getById($id)
     {
         $result = $this->gateway
             ->select(['id' => intval($id)])
@@ -38,7 +38,6 @@ abstract class AbstractDataTable implements RepositoryInterface
     public function persist(AbstractEntity $entity)
     {
         $data = $this->hydrator->extract($entity);
-
         if ($this->hasIdentity($entity)) {
             $this->gateway->update($data, ['id' => $entity->getId()]);
         } else {

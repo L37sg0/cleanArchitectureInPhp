@@ -4,9 +4,9 @@ namespace L37sg0\Architecture\Domain\Entity;
 
 class AbstractEntity
 {
-    protected int $id;
+    protected $id;
 
-    public function getId(): int {
+    public function getId() {
         return $this->id;
     }
 

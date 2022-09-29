@@ -7,9 +7,17 @@
 
 namespace Application;
 
+use Application\Controller\CustomersController;
+use Application\Controller\IndexController;
+use Application\Mvc\Controller\Plugin\CustomFlashMessengerFactory;
+use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
+use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
+use Zend\Hydrator\ClassMethods;
+use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Application\Mvc\Controller\Plugin\CustomFlashMessenger;
 
 return [
     'router' => [
@@ -43,6 +51,18 @@ return [
                         'action' => 'index',
                     ],
                 ],
+                'may_terminate' => true,
+                'child_routes'  => [
+                    'create'    => [
+                        'type'  => 'Segment',
+                        'options'   => [
+                            'route' => '/new',
+                            'defaults'  => [
+                                'action'    => 'new',
+                            ],
+                        ],
+                    ],
+                ],
             ],
             'orders' => [
                 'type' => 'Segment',
@@ -67,8 +87,18 @@ return [
         ],
     ],
     'controllers' => [
+        'invokables' => [
+            'Application\Controller\Index' => IndexController::class,
+        ],
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class   => InvokableFactory::class,
+            'Application\Controller\Customers'  => function($sm) {
+                return new CustomersController(
+                    $sm->getServiceLocator()->get(CustomerTable::class),
+                    new CustomerInputFilter(),
+                    new ClassMethods()
+                );
+            },
         ],
     ],
     'view_manager' => [
@@ -86,5 +116,21 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
+    ],
+//    'controller_plugins' => [
+//        'factories' => [
+//            CustomFlashMessenger::class => InvokableFactory::class,
+//        ],
+//        'aliases' => [
+//            'flashmessenger' => CustomFlashMessenger::class,
+//        ]
+//    ],
+    'controller_plugins' => [
+        'factories' => [
+            FlashMessenger::class => InvokableFactory::class,
+        ],
+        'aliases' => [
+            'flashmessenger' => FlashMessenger::class,
+        ]
     ],
 ];

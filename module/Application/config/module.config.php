@@ -21,7 +21,7 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'router' => [
         'routes' => [
-            'home' => [
+            'home'          => [
                 'type'    => Literal::class,
                 'options' => [
                     'route'    => '/',
@@ -31,7 +31,7 @@ return [
                     ],
                 ],
             ],
-            'application' => [
+            'application'   => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/application[/:action]',
@@ -41,9 +41,9 @@ return [
                     ],
                 ],
             ],
-            'customers' => [
-                'type' => 'Segment',
-                'options' => [
+            'customers'     => [
+                'type'      => 'Segment',
+                'options'   => [
                     'route' => '/customers',
                     'defaults' => [
                         'controller' => 'Application\Controller\Customers',
@@ -52,12 +52,24 @@ return [
                 ],
                 'may_terminate' => true,
                 'child_routes'  => [
-                    'create'    => [
-                        'type'  => 'Segment',
+                    'new'   => [
+                        'type'      => 'Segment',
                         'options'   => [
-                            'route' => '/new',
+                            'route'     => '/new',
                             'defaults'  => [
-                                'action'    => 'new',
+                                'action'    => 'new-or-edit',
+                            ],
+                        ],
+                    ],
+                    'edit'  => [
+                        'type'      => 'Segment',
+                        'options'   => [
+                            'route'         => '/edit/:id',
+                            'constraints'   => [
+                                'id'    => '[0-9]+',
+                            ],
+                            'defaults'      => [
+                                'action'    => 'new-or-edit',
                             ],
                         ],
                     ],

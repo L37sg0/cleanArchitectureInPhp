@@ -9,8 +9,10 @@ namespace Application;
 
 use Application\Controller\CustomersController;
 use Application\Controller\IndexController;
+use Application\Controller\OrdersController;
 use Application\View\Helper\ValidationErrors;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
+use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
@@ -103,11 +105,16 @@ return [
         ],
         'factories' => [
             Controller\IndexController::class   => InvokableFactory::class,
-            'Application\Controller\Customers'  => function($sm) {
+            'Application\Controller\Customers'  => function($services) {
                 return new CustomersController(
-                    $sm->getServiceLocator()->get(CustomerTable::class),
+                    $services->get(CustomerTable::class),
                     new CustomerInputFilter(),
                     new ClassMethods()
+                );
+            },
+            'Application\Controller\Orders'    => function($services) {
+                return new OrdersController(
+                    $services->get(OrderTable::class)
                 );
             },
         ],

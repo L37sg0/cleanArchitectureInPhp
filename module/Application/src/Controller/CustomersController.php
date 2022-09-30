@@ -45,7 +45,7 @@ class CustomersController extends AbstractActionController
                 $this->hydrator->hydrate($this->inputFilter->getValues(), $customer);
                 $this->customerRepository->begin()->persist($customer)->commit();
                 $this->flashmessenger()->addSuccessMessage('Customer Saved');
-                $this->redirect()->toUrl('/customers/edit' . $customer->getId());
+                $this->redirect()->toUrl('/customers/edit/' . $customer->getId());
             } else {
                 $this->hydrator->hydrate($this->params()->fromPost(), $customer);
             }

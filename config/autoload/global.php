@@ -14,6 +14,7 @@
 use L37sg0\Architecture\Domain\Entity\Customer;
 use L37sg0\Architecture\Domain\Entity\Invoice;
 use L37sg0\Architecture\Domain\Entity\Order;
+use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
@@ -25,7 +26,13 @@ use Zend\Hydrator\ClassMethods;
 return [
     'service_manager' => [
         'factories' => [
-            Adapter::class => AdapterServiceFactory::class,
+            Adapter::class          => AdapterServiceFactory::class,
+            OrderHydrator::class    => function($sm) {
+                return new OrderHydrator(
+                    new ClassMethods(),
+                    $sm->get(CustomerTable::class)
+                );
+            },
             CustomerTable::class    => function($sm) {
                 $factory    = new TableGatewayFactory();
                 $hydrator   = new ClassMethods();
@@ -56,7 +63,7 @@ return [
             },
             OrderTable::class       => function($sm) {
                 $factory    = new TableGatewayFactory();
-                $hydrator   = new ClassMethods();
+                $hydrator   = $sm->get(OrderHydrator::class);
 
                 return new OrderTable(
                     $factory->createGateway(

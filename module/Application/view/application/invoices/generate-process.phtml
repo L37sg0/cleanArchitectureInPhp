@@ -1,9 +1,11 @@
-<div class="page-header clearfix">
-    <h2 class="pull-left">Invoices</h2>
-    <a href="/invoices/generate"
-            class="btn btn-success pull-right">
-        Generate Invoices</a>
+<div class="page-header">
+    <h2>Generated Invoices</h2>
 </div>
+<?php if (empty($this->invoices)): ?>
+    <p class="text-center">
+        <em>No invoices were generated.</em>
+    </p>
+<?php else: ?>
 <table class="table table-striped clearfix">
     <thead>
     <tr>
@@ -23,10 +25,10 @@
                 <?= $this->escapeHtml($invoice->getId()) ?></a>
         </td>
         <td>
-            <?= $this->escapeHtml($invoice->getOrder()->getOrderNumber()) ?>
+            <?= $invoice->getInvoiceDate()->format('m/d/Y') ?>
         </td>
         <td>
-            <?= $invoice->getInvoiceDate()->format('m/d/Y') ?>
+            <?= $this->escapeHtml($invoice->getOrder()->getOrderNumber()) ?>
         </td>
         <td>
             <a href="/customers/edit/<?=
@@ -46,3 +48,4 @@
     </tr>
     <?php endforeach; ?>
 </table>
+<?php endif; ?>

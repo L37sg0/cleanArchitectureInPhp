@@ -2,11 +2,13 @@
 
 namespace L37sg0\Architecture\Persistence\Zend\DataTable;
 
-class OrderTable extends AbstractDataTable implements \L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface
+use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
+
+class OrderTable extends AbstractDataTable implements OrderRepositoryInterface
 {
 
-    public function getUnInvoicedOrders(): array
+    public function getUnInvoicedOrders()
     {
-        return [];
+        return $this->gateway->select('id NOT IN(SELECT order_id FROM invoices)');
     }
 }

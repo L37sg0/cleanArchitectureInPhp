@@ -12,6 +12,8 @@ use Application\Controller\IndexController;
 use Application\Controller\InvoicesController;
 use Application\Controller\OrdersController;
 use Application\View\Helper\ValidationErrors;
+use L37sg0\Architecture\Domain\Factory\InvoiceFactory;
+use L37sg0\Architecture\Domain\Service\InvoicingService;
 use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
@@ -94,7 +96,7 @@ return [
             'invoices' => [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/invoices',
+                    'route' => '/invoices[/:action[/:id]]',
                     'defaults' => [
                         'controller' => InvoicesController::class,
                         'action' => 'index',
@@ -126,7 +128,12 @@ return [
             },
             InvoicesController::class   => function($services) {
                 return new InvoicesController(
-                    $services->get(InvoiceTable::class)
+                    $services->get(InvoiceTable::class),
+                    $services->get(OrderTable::class),
+                    new InvoicingService(
+                        $services->get(OrderTable::class),
+                        new InvoiceFactory()
+                    )
                 );
             },
         ],

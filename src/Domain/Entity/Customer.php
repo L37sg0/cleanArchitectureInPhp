@@ -12,7 +12,7 @@ class Customer extends AbstractEntity
         return $this->name;
     }
 
-    public function setName(string $name): Customer {
+    public function setName($name) {
         $this->name = $name;
         return $this;
     }
@@ -21,7 +21,7 @@ class Customer extends AbstractEntity
         return $this->email;
     }
 
-    public function setEmail(string $email): Customer
+    public function setEmail($email)
     {
         $this->email = $email;
         return $this;

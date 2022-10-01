@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4a1a676302614ae75872ed1c0dbd70b",
+    "content-hash": "3cdc269f957b23d110c9d8efe12202de",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -2120,6 +2120,58 @@
             },
             "abandoned": true,
             "time": "2016-11-16T10:37:54+00:00"
+        },
+        {
+            "name": "vnn/keyper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varsitynewsnetwork/keyper.git",
+                "reference": "cd6c4cea15d7e4480bc8ca98df77c4f8ba882e84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varsitynewsnetwork/keyper/zipball/cd6c4cea15d7e4480bc8ca98df77c4f8ba882e84",
+                "reference": "cd6c4cea15d7e4480bc8ca98df77c4f8ba882e84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Vnn": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Scaturro",
+                    "email": "scaturrob@gmail.com"
+                },
+                {
+                    "name": "Austin Morris",
+                    "email": "austin.morris@gmail.com"
+                }
+            ],
+            "description": "Do things based on the presence of a key",
+            "keywords": [
+                "array",
+                "function"
+            ],
+            "support": {
+                "issues": "https://github.com/varsitynewsnetwork/keyper/issues",
+                "source": "https://github.com/varsitynewsnetwork/keyper/tree/1.3.1"
+            },
+            "time": "2015-09-24T19:08:48+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -7502,6 +7554,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "zendframework/zendframework": 20,
+        "vnn/keyper": 20,
         "peridot-php/peridot-watcher-plugin": 20,
         "peridot-php/peridot-prophecy-plugin": 20
     },

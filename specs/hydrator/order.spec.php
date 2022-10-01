@@ -18,7 +18,7 @@ describe(OrderHydrator::class, function () {
     });
 
     describe('->hydrate()', function () {
-        it('1. Should perform basic hydration of attributes', function () {
+        it('1. Should perform basic hydration of attributes.', function () {
             $data = [
                 'id'            => 100,
                 'order_number'  => '20150101-019',
@@ -35,7 +35,7 @@ describe(OrderHydrator::class, function () {
             assert($order->getTotal()       === 5000);
         });
 
-        it('2. Should hydrate a Customer entity on the Order', function () {
+        it('2. Should hydrate a Customer entity on the Order.', function () {
             $data = [
                 'customer_id' => 500
             ];
@@ -52,6 +52,24 @@ describe(OrderHydrator::class, function () {
             assert($order->getCustomer() === $customer);
 
             $this->getProphet()->checkPredictions();
+        });
+
+        it('3. Should hydrate the embedded customer data.', function () {
+            $data = ['customer' => ['id' => 20]];
+            $order = new Order();
+
+            $this->hydrator->hydrate($data, $order);
+
+            assert($data['customer']['id'] === $order->getCustomer()->getId(), 'id does not match');
+        });
+
+        it('4. Should extract the customer object.', function () {
+            $order = new Order();
+            $order->setCustomer((new Customer())->setId(14));
+
+            $data = $this->hydrator->extract($order);
+
+            assert($order->getCustomer()->getId() === $data['customer_id'], 'customer_id is not correct');
         });
     });
 });

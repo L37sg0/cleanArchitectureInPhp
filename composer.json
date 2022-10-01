@@ -20,6 +20,7 @@
         "peridot-php/peridot-prophecy-plugin": "dev-master"
     },
     "require": {
-        "zendframework/zendframework": "3.1.x-dev"
+        "zendframework/zendframework": "3.1.x-dev",
+        "vnn/keyper": "dev-master"
     }
 }

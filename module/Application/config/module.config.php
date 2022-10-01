@@ -11,9 +11,11 @@ use Application\Controller\CustomersController;
 use Application\Controller\IndexController;
 use Application\Controller\OrdersController;
 use Application\View\Helper\ValidationErrors;
+use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
+use L37sg0\Architecture\Service\InputFilter\OrderInputFilter;
 use Zend\Hydrator\ClassMethods;
 use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Zend\Router\Http\Literal;
@@ -80,7 +82,7 @@ return [
             'orders' => [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/orders',
+                    'route' => '/orders[/:action[/:id]]',
                     'defaults' => [
                         'controller' => 'Application\Controller\Orders',
                         'action' => 'index',
@@ -114,7 +116,10 @@ return [
             },
             'Application\Controller\Orders'    => function($services) {
                 return new OrdersController(
-                    $services->get(OrderTable::class)
+                    $services->get(OrderTable::class),
+                    $services->get(CustomerTable::class),
+                    new OrderInputFilter(),
+                    $services->get(OrderHydrator::class)
                 );
             },
         ],

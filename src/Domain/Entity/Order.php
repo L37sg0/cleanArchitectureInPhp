@@ -4,43 +4,43 @@ namespace L37sg0\Architecture\Domain\Entity;
 
 class Order extends AbstractEntity
 {
-    protected Customer $customer;
-    protected string $orderNumber;
-    protected string $description;
-    protected int $total = 0;
+    protected $customer;
+    protected $orderNumber;
+    protected $description;
+    protected $total;
 
-    public function getCustomer(): Customer {
+    public function getCustomer() {
         return $this->customer;
     }
 
-    public function setCustomer(Customer $customer): Order {
+    public function setCustomer($customer) {
         $this->customer = $customer;
         return $this;
     }
 
-    public function getOrderNumber(): string {
+    public function getOrderNumber() {
         return $this->orderNumber;
     }
 
-    public function setOrderNumber(string $orderNumber): Order {
+    public function setOrderNumber($orderNumber) {
         $this->orderNumber = $orderNumber;
         return $this;
     }
 
-    public function getDescription(): string {
+    public function getDescription() {
         return $this->description;
     }
 
-    public function setDescription(string $description): Order {
+    public function setDescription($description) {
         $this->description = $description;
         return $this;
     }
 
-    public function getTotal(): int {
+    public function getTotal() {
         return $this->total;
     }
 
-    public function setTotal(int $total): Order {
+    public function setTotal($total) {
         $this->total = $total;
         return $this;
     }

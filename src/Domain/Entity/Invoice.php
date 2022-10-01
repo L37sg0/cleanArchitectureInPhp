@@ -6,15 +6,15 @@ use DateTime;
 
 class Invoice extends AbstractEntity
 {
-    protected Order $order;
-    protected DateTime $invoiceDate;
-    protected int $total;
+    protected $order;
+    protected $invoiceDate;
+    protected $total;
 
-    public function getOrder(): Order {
+    public function getOrder() {
         return $this->order;
     }
 
-    public function setOrder(Order $order): Invoice {
+    public function setOrder($order) {
         $this->order = $order;
         return $this;
     }
@@ -28,11 +28,11 @@ class Invoice extends AbstractEntity
         return $this;
     }
 
-    public function getTotal(): int {
+    public function getTotal() {
         return $this->total;
     }
 
-    public function setTotal(int $total): Invoice {
+    public function setTotal($total) {
         $this->total = $total;
         return $this;
     }

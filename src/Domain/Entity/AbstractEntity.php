@@ -10,7 +10,7 @@ class AbstractEntity
         return $this->id;
     }
 
-    public function setId(int $id): AbstractEntity {
+    public function setId($id) {
         $this->id = $id;
         return $this;
     }

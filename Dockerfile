@@ -18,13 +18,14 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     sqlite3 \
-    php7.4-sqlite
+    php7.4-sqlite \
+    libicu-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl
+RUN docker-php-ext-install gd pdo_mysql zip exif pcntl intl
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

@@ -9,10 +9,12 @@ namespace Application;
 
 use Application\Controller\CustomersController;
 use Application\Controller\IndexController;
+use Application\Controller\InvoicesController;
 use Application\Controller\OrdersController;
 use Application\View\Helper\ValidationErrors;
 use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
+use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
 use L37sg0\Architecture\Service\InputFilter\OrderInputFilter;
@@ -50,7 +52,7 @@ return [
                 'options'   => [
                     'route' => '/customers',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Customers',
+                        'controller' => CustomersController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -84,7 +86,7 @@ return [
                 'options' => [
                     'route' => '/orders[/:action[/:id]]',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Orders',
+                        'controller' => OrdersController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -94,7 +96,7 @@ return [
                 'options' => [
                     'route' => '/invoices',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Invoices',
+                        'controller' => InvoicesController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -107,19 +109,24 @@ return [
         ],
         'factories' => [
             Controller\IndexController::class   => InvokableFactory::class,
-            'Application\Controller\Customers'  => function($services) {
+            CustomersController::class  => function($services) {
                 return new CustomersController(
                     $services->get(CustomerTable::class),
                     new CustomerInputFilter(),
                     new ClassMethods()
                 );
             },
-            'Application\Controller\Orders'    => function($services) {
+            OrdersController::class     => function($services) {
                 return new OrdersController(
                     $services->get(OrderTable::class),
                     $services->get(CustomerTable::class),
                     new OrderInputFilter(),
                     $services->get(OrderHydrator::class)
+                );
+            },
+            InvoicesController::class   => function($services) {
+                return new InvoicesController(
+                    $services->get(InvoiceTable::class)
                 );
             },
         ],

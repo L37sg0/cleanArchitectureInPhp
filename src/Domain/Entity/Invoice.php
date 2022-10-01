@@ -19,11 +19,11 @@ class Invoice extends AbstractEntity
         return $this;
     }
 
-    public function getInvoiceDate(): DateTime {
+    public function getInvoiceDate() {
         return $this->invoiceDate;
     }
 
-    public function setInvoiceDate(DateTime $invoiceDate): Invoice {
+    public function setInvoiceDate($invoiceDate) {
         $this->invoiceDate = $invoiceDate;
         return $this;
     }

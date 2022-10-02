@@ -21,6 +21,8 @@
     },
     "require": {
         "zendframework/zendframework": "3.1.x-dev",
-        "vnn/keyper": "dev-master"
+        "vnn/keyper": "dev-master",
+        "doctrine/orm": "*",
+        "symfony/yaml": "*"
     }
 }

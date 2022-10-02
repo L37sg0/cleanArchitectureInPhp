@@ -2,10 +2,10 @@
 
 namespace L37sg0\Architecture\Persistence\Zend\TableGateway;
 
-use Zend\Db\Adapter\Adapter;
-use Zend\Db\ResultSet\HydratingResultSet;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\ResultSet\HydratingResultSet;
+use Laminas\Db\TableGateway\TableGateway;
+use Laminas\Hydrator\HydratorInterface;
 
 class TableGatewayFactory
 {

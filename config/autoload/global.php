@@ -20,9 +20,9 @@ use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
 use L37sg0\Architecture\Persistence\Zend\TableGateway\TableGatewayFactory;
-use Zend\Db\Adapter\Adapter;
-use Zend\Db\Adapter\AdapterServiceFactory;
-use Zend\Hydrator\ClassMethods;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Db\Adapter\AdapterServiceFactory;
+use Laminas\Hydrator\ClassMethodsHydrator;
 
 return [
     'service_manager' => [
@@ -30,23 +30,23 @@ return [
             Adapter::class          => AdapterServiceFactory::class,
             OrderHydrator::class    => function($sm) {
                 return new OrderHydrator(
-                    new ClassMethods(),
+                    new ClassMethodsHydrator(),
                     $sm->get(CustomerTable::class)
                 );
             },
             InvoiceHydrator::class  => function($sm) {
                 return new InvoiceHydrator(
-                    new ClassMethods(),
+                    new ClassMethodsHydrator(),
                     $sm->get(OrderTable::class)
                 );
             },
             CustomerTable::class    => function($sm) {
                 $factory    = new TableGatewayFactory();
-                $hydrator   = new ClassMethods();
+                $hydrator   = new ClassMethodsHydrator();
 
                 return new CustomerTable(
                     $factory->createGateway(
-                        $sm->get(Zend\Db\Adapter\Adapter::class),
+                        $sm->get(Laminas\Db\Adapter\Adapter::class),
                         $hydrator,
                         new Customer(),
                         'customers'

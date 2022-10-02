@@ -2,10 +2,10 @@
 
 namespace L37sg0\Architecture\Service\InputFilter;
 
-use Zend\I18n\Validator\IsFloat;
-use Zend\InputFilter\Input;
-use Zend\InputFilter\InputFilter;
-use Zend\Validator\StringLength;
+use Laminas\I18n\Validator\IsFloat;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator\StringLength;
 
 class OrderInputFilter extends InputFilter
 {

@@ -4,14 +4,14 @@ use L37sg0\Architecture\Domain\Entity\Invoice;
 use L37sg0\Architecture\Domain\Entity\Order;
 use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Persistence\Hydrator\InvoiceHydrator;
-use Zend\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 
 describe(InvoiceHydrator::class, function () {
     beforeEach(function () {
         $this->repository = $this->getProphet()
             ->prophesize(OrderRepositoryInterface::class);
 
-        $this->hydrator = new InvoiceHydrator(new ClassMethods(), $this->repository->reveal());
+        $this->hydrator = new InvoiceHydrator(new ClassMethodsHydrator(), $this->repository->reveal());
     });
     describe('->extract()', function () {
         it('1. Should perform simple extraction on the object.', function () {

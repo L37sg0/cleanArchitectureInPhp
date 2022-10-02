@@ -20,11 +20,11 @@ use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
 use L37sg0\Architecture\Service\InputFilter\OrderInputFilter;
-use Zend\Hydrator\ClassMethods;
-use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\Hydrator\ClassMethodsHydrator;
+use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -115,7 +115,7 @@ return [
                 return new CustomersController(
                     $services->get(CustomerTable::class),
                     new CustomerInputFilter(),
-                    new ClassMethods()
+                    new ClassMethodsHydrator()
                 );
             },
             OrdersController::class     => function($services) {

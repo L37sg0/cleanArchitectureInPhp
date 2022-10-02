@@ -5,16 +5,16 @@ namespace L37sg0\Architecture\Persistence\Hydrator;
 use L37sg0\Architecture\Domain\Entity\Order;
 use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Persistence\Hydrator\Strategy\DateStrategy;
-use Zend\Hydrator\ClassMethods;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\ClassMethodsHydrator;
+use Laminas\Hydrator\HydratorInterface;
 
 class InvoiceHydrator implements HydratorInterface
 {
-    protected ClassMethods $wrappedHydrator;
+    protected ClassMethodsHydrator $wrappedHydrator;
     protected OrderRepositoryInterface $orderRepository;
 
     public function __construct(
-        ClassMethods $wrappedHydrator,
+        ClassMethodsHydrator$wrappedHydrator,
         OrderRepositoryInterface $orderRepository
     ) {
         $this->wrappedHydrator = $wrappedHydrator;
@@ -26,7 +26,7 @@ class InvoiceHydrator implements HydratorInterface
     /**
      * @inheritDoc
      */
-    public function extract($object)
+    public function extract($object): array
     {
         $data = $this->wrappedHydrator-> extract($object);
 

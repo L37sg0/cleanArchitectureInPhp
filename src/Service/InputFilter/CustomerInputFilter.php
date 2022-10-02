@@ -2,9 +2,9 @@
 
 namespace L37sg0\Architecture\Service\InputFilter;
 
-use Zend\InputFilter\Input;
-use Zend\InputFilter\InputFilter;
-use Zend\Validator\EmailAddress;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator\EmailAddress;
 
 class CustomerInputFilter extends InputFilter
 {

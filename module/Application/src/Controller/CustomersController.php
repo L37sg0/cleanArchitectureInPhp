@@ -5,9 +5,9 @@ namespace Application\Controller;
 use L37sg0\Architecture\Domain\Entity\Customer;
 use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
-use Zend\Hydrator\HydratorInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Hydrator\HydratorInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class CustomersController extends AbstractActionController
 {

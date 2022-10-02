@@ -5,7 +5,7 @@ namespace Application\Controller;
 use L37sg0\Architecture\Domain\Repository\InvoiceRepositoryInterface;
 use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Domain\Service\InvoicingService;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class InvoicesController extends AbstractActionController
 {

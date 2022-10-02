@@ -7,8 +7,8 @@ use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
 use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
 use L37sg0\Architecture\Service\InputFilter\OrderInputFilter;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class OrdersController extends AbstractActionController
 {

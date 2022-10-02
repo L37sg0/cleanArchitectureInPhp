@@ -4,7 +4,7 @@ use L37sg0\Architecture\Domain\Entity\Customer;
 use L37sg0\Architecture\Domain\Entity\Order;
 use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
 use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
-use Zend\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 
 describe(OrderHydrator::class, function () {
     beforeEach(function () {
@@ -12,7 +12,7 @@ describe(OrderHydrator::class, function () {
             CustomerRepositoryInterface::class
         );
         $this->hydrator = new OrderHydrator(
-            new ClassMethods(),
+            new ClassMethodsHydrator(),
             $this->repository->reveal()
         );
     });

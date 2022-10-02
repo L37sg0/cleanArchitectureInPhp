@@ -3,7 +3,7 @@
 namespace Application\View\Helper;
 
 use Vnn\Keyper\Keyper;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class ValidationErrors extends AbstractHelper
 {

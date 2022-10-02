@@ -4,8 +4,8 @@ namespace L37sg0\Architecture\Persistence\Zend\DataTable;
 
 use L37sg0\Architecture\Domain\Entity\AbstractEntity;
 use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Db\TableGateway\TableGateway;
+use Laminas\Hydrator\HydratorInterface;
 
 abstract class AbstractDataTable implements RepositoryInterface
 {

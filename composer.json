@@ -20,7 +20,28 @@
         "peridot-php/peridot-prophecy-plugin": "dev-master"
     },
     "require": {
-        "zendframework/zendframework": "3.1.x-dev",
-        "vnn/keyper": "dev-master"
+        "vnn/keyper": "dev-master",
+        "laminas/laminas-dependency-plugin": "*",
+        "laminas/laminas-component-installer": "*",
+        "laminas/laminas-development-mode": "*",
+        "laminas/laminas-mvc": "*",
+        "laminas/laminas-db": "*",
+        "laminas/laminas-mvc-form": "*",
+        "laminas/laminas-json": "*",
+        "laminas/laminas-log": "*",
+        "laminas/laminas-mvc-i18n": "*",
+        "laminas/laminas-mvc-plugins": "*",
+        "laminas/laminas-mvc-middleware": "*",
+        "laminas/laminas-session": "*",
+        "laminas/laminas-di": "*",
+        "laminas/laminas-hydrator": "*",
+        "laminas/laminas-mvc-plugin-flashmessenger": "*"
+
+    },
+    "config": {
+        "allow-plugins": {
+            "laminas/laminas-dependency-plugin": true,
+            "laminas/laminas-component-installer": true
+        }
     }
 }

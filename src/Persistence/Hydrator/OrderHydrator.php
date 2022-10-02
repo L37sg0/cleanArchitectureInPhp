@@ -4,7 +4,7 @@ namespace L37sg0\Architecture\Persistence\Hydrator;
 
 use L37sg0\Architecture\Domain\Entity\Customer;
 use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\HydratorInterface;
 
 class OrderHydrator implements HydratorInterface
 {
@@ -41,7 +41,7 @@ class OrderHydrator implements HydratorInterface
         return $order;
     }
 
-    public function extract($object)
+    public function extract($object): array
     {
         $data = $this->wrappedHydrator->extract($object);
 

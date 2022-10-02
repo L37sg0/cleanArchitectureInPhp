@@ -23,6 +23,7 @@
         "zendframework/zendframework": "3.1.x-dev",
         "vnn/keyper": "dev-master",
         "doctrine/orm": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "doctrine/doctrine-orm-module": "*"
     }
 }

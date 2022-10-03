@@ -2,7 +2,6 @@
 
 namespace L37sg0\Architecture\Persistence\Hydrator;
 
-use L37sg0\Architecture\Domain\Entity\Customer;
 use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
 use Zend\Hydrator\HydratorInterface;
 
@@ -26,24 +25,6 @@ class OrderHydrator implements HydratorInterface
         }
 
         return $this->wrappedHydrator->hydrate($data, $order);
-//        $customer = null;
-//
-//        if (isset($data['customer'])) {
-//            $customer = $this->wrappedHydrator->hydrate($data['customer'], new Customer());
-//            unset($data['customer']);
-//        }
-//
-//        if (isset($data['customer_id'])) {
-//            $customer = $this->customerRepository->getById($data['customer_id']);
-//        }
-//
-//        $this->wrappedHydrator->hydrate($data, $order);
-//
-//        if ($customer) {
-//            $order->setCustomer($customer);
-//        }
-//
-//        return $order;
     }
 
     public function extract($object)

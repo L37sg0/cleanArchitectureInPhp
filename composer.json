@@ -35,7 +35,10 @@
         "laminas/laminas-session": "*",
         "laminas/laminas-di": "*",
         "laminas/laminas-hydrator": "*",
-        "laminas/laminas-mvc-plugin-flashmessenger": "*"
+        "laminas/laminas-mvc-plugin-flashmessenger": "*",
+        "doctrine/orm": "*",
+        "symfony/yaml": "*",
+        "doctrine/doctrine-orm-module": "*"
 
     },
     "config": {

@@ -11,18 +11,14 @@
  * file.
  */
 
-use L37sg0\Architecture\Domain\Entity\Customer;
-use L37sg0\Architecture\Domain\Entity\Invoice;
-use L37sg0\Architecture\Domain\Entity\Order;
-use L37sg0\Architecture\Persistence\Hydrator\InvoiceHydrator;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\CustomerRepository;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\InvoiceRepository;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\OrderRepository;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\RepositoryFactory;
 use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
-use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
-use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
-use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
-use L37sg0\Architecture\Persistence\Zend\TableGateway\TableGatewayFactory;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\AdapterServiceFactory;
-use Laminas\Hydrator\ClassMethodsHydrator;
+use Laminas\Hydrator\ClassMethods;
 
 return [
     'service_manager' => [
@@ -30,58 +26,13 @@ return [
             Adapter::class          => AdapterServiceFactory::class,
             OrderHydrator::class    => function($sm) {
                 return new OrderHydrator(
-                    new ClassMethodsHydrator(),
-                    $sm->get(CustomerTable::class)
+                    new ClassMethods(),
+                    $sm->get(CustomerRepository::class)
                 );
             },
-            InvoiceHydrator::class  => function($sm) {
-                return new InvoiceHydrator(
-                    new ClassMethodsHydrator(),
-                    $sm->get(OrderTable::class)
-                );
-            },
-            CustomerTable::class    => function($sm) {
-                $factory    = new TableGatewayFactory();
-                $hydrator   = new ClassMethodsHydrator();
-
-                return new CustomerTable(
-                    $factory->createGateway(
-                        $sm->get(Laminas\Db\Adapter\Adapter::class),
-                        $hydrator,
-                        new Customer(),
-                        'customers'
-                    ),
-                    $hydrator
-                );
-            },
-            InvoiceTable::class     => function($sm) {
-                $factory    = new TableGatewayFactory();
-                $hydrator   = $sm->get(InvoiceHydrator::class);
-
-                return new InvoiceTable(
-                    $factory->createGateway(
-                        $sm->get(Adapter::class),
-                        $hydrator,
-                        new Invoice(),
-                        'invoices'
-                    ),
-                    $hydrator
-                );
-            },
-            OrderTable::class       => function($sm) {
-                $factory    = new TableGatewayFactory();
-                $hydrator   = $sm->get(OrderHydrator::class);
-
-                return new OrderTable(
-                    $factory->createGateway(
-                        $sm->get(Adapter::class),
-                        $hydrator,
-                        new Order(),
-                        'orders'
-                    ),
-                    $hydrator
-                );
-            },
+            CustomerRepository::class   => RepositoryFactory::class,
+            OrderRepository::class      => RepositoryFactory::class,
+            InvoiceRepository::class    => RepositoryFactory::class
         ],
     ]
 ];

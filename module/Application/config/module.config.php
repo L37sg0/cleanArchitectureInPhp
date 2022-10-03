@@ -14,13 +14,16 @@ use Application\Controller\OrdersController;
 use Application\View\Helper\ValidationErrors;
 use L37sg0\Architecture\Domain\Factory\InvoiceFactory;
 use L37sg0\Architecture\Domain\Service\InvoicingService;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\CustomerRepository;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\InvoiceRepository;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\OrderRepository;
 use L37sg0\Architecture\Persistence\Hydrator\OrderHydrator;
 use L37sg0\Architecture\Persistence\Zend\DataTable\CustomerTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\InvoiceTable;
 use L37sg0\Architecture\Persistence\Zend\DataTable\OrderTable;
 use L37sg0\Architecture\Service\InputFilter\CustomerInputFilter;
 use L37sg0\Architecture\Service\InputFilter\OrderInputFilter;
-use Laminas\Hydrator\ClassMethodsHydrator;
+use Laminas\Hydrator\ClassMethods;
 use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -113,25 +116,25 @@ return [
             Controller\IndexController::class   => InvokableFactory::class,
             CustomersController::class  => function($services) {
                 return new CustomersController(
-                    $services->get(CustomerTable::class),
+                    $services->get(CustomerRepository::class),
                     new CustomerInputFilter(),
-                    new ClassMethodsHydrator()
+                    new ClassMethods()
                 );
             },
             OrdersController::class     => function($services) {
                 return new OrdersController(
-                    $services->get(OrderTable::class),
-                    $services->get(CustomerTable::class),
+                    $services->get(OrderRepository::class),
+                    $services->get(CustomerRepository::class),
                     new OrderInputFilter(),
                     $services->get(OrderHydrator::class)
                 );
             },
             InvoicesController::class   => function($services) {
                 return new InvoicesController(
-                    $services->get(InvoiceTable::class),
-                    $services->get(OrderTable::class),
+                    $services->get(InvoiceRepository::class),
+                    $services->get(OrderRepository::class),
                     new InvoicingService(
-                        $services->get(OrderTable::class),
+                        $services->get(OrderRepository::class),
                         new InvoiceFactory()
                     )
                 );

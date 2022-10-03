@@ -8,7 +8,9 @@
 ## Implementations:
 
 - [zendframework3](https://github.com/L37sg0/cleanArchitectureInPhp/tree/zf3-setup)
-
+- [zendframework3 and Doctrine2](https://github.com/L37sg0/cleanArchitectureInPhp/tree/zf3-doctrine2-setup)
+- [Laminas framework](https://github.com/L37sg0/cleanArchitectureInPhp/tree/laminas-setup)
+- [Laminas framework and Doctrine2](https://github.com/L37sg0/cleanArchitectureInPhp/tree/laminas-doctrine-setup)
 ## UML Diagrams:
 
 ### Entity

@@ -2,49 +2,72 @@
     "name": "l37sg0/architecture",
     "description": "Exercising on 'The Clean Architecture in PHP' by Kristopher Wilson.",
     "type": "library",
+    "authors": [
+      {
+        "name": "Petar Ivanov",
+        "email": "petar.ivanov@l37sg0.com"
+      }
+    ],
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "doctrine/orm": "^2.13",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.75",
+        "laravel/sanctum": "^2.11",
+        "laravel/tinker": "^2.5"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
+    },
     "autoload": {
         "psr-4": {
-            "L37sg0\\Architecture\\": "src/",
-            "Application\\": "module/Application/src/"
+            "L37sg0\\Architecture\\": "core/",
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
-    "authors": [
-        {
-            "name": "Petar Ivanov",
-            "email": "petar.ivanov@l37sg0.com"
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
-    ],
-    "minimum-stability": "dev",
-    "require-dev": {
-        "peridot-php/peridot-watcher-plugin": "dev-master",
-        "peridot-php/peridot-prophecy-plugin": "dev-master"
     },
-    "require": {
-        "vnn/keyper": "dev-master",
-        "laminas/laminas-dependency-plugin": "*",
-        "laminas/laminas-component-installer": "*",
-        "laminas/laminas-development-mode": "*",
-        "laminas/laminas-mvc": "*",
-        "laminas/laminas-db": "*",
-        "laminas/laminas-mvc-form": "*",
-        "laminas/laminas-json": "*",
-        "laminas/laminas-log": "*",
-        "laminas/laminas-mvc-i18n": "*",
-        "laminas/laminas-mvc-plugins": "*",
-        "laminas/laminas-mvc-middleware": "*",
-        "laminas/laminas-session": "*",
-        "laminas/laminas-di": "*",
-        "laminas/laminas-hydrator": "*",
-        "laminas/laminas-mvc-plugin-flashmessenger": "*",
-        "doctrine/orm": "*",
-        "symfony/yaml": "*",
-        "doctrine/doctrine-orm-module": "*"
-
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "providers": [
+                "L37sg0\\Architecture\\Persistence\\Doctrine\\Providers\\DoctrineOrmServiceProvider"
+            ]
+        }
     },
     "config": {
-        "allow-plugins": {
-            "laminas/laminas-dependency-plugin": true,
-            "laminas/laminas-component-installer": true
-        }
-    }
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

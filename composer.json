@@ -12,6 +12,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "doctrine/orm": "^2.13",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
@@ -56,7 +57,10 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [],
+            "providers": [
+                "L37sg0\\Architecture\\Persistence\\Doctrine\\Providers\\DoctrineOrmServiceProvider"
+            ]
         }
     },
     "config": {

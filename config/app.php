@@ -1,5 +1,7 @@
 <?php
 
+use L37sg0\Architecture\Persistence\Doctrine\Providers\DoctrineOrmServiceProvider;
+
 return [
 
     /*
@@ -174,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        DoctrineOrmServiceProvider::class
 
     ],
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Dashboard::class, 'indexAction']);
+Route::get('/customers', [Dashboard::class, 'indexAction']);
+Route::get('/orders', [Dashboard::class, 'indexAction']);
+Route::get('/invoices', [Dashboard::class, 'indexAction']);

@@ -5,6 +5,6 @@ return [
 
     'mappings' => [
         'type' => 'yaml',
-        'paths' => [__DIR__ . '/app/Entities']
+        'paths' => [base_path('core') . '/Persistence/Doctrine/Mapping']
     ],
 ];

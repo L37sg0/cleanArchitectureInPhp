@@ -35,7 +35,7 @@ class InputTest extends TestCase
     public function testInputRequiredIsValidLogicFalse() {
         $input1 = $this->createMock(InputInterface::class);
         $input1->method('isValid')->willReturn(false)->with('');
-        $input1->method('getMessages')->willReturn(['isEmpty' => 'Value is required and can\'t be empty.']);
+        $input1->method('getMessages')->willReturn([['isEmpty' => 'Value is required and can\'t be empty.']]);
 
         $input2 = new Input('name');
         $input2->setRequired(true);

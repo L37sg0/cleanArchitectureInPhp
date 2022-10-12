@@ -48,7 +48,7 @@ class Input implements InputInterface
     public function isValid($value)
     {
         if ($this->required && empty((string)$value)){
-            $this->messages['isEmpty'] = self::REQUIRED_INPUT_ERROR;
+            $this->messages[]['isEmpty'] = self::REQUIRED_INPUT_ERROR;
             return false;
         }
         if (!$this->getValidatorChain()->isValid($value)) {

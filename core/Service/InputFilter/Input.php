@@ -20,6 +20,10 @@ class Input implements InputInterface
         $this->name = $name;
     }
 
+    public function getName() {
+        return $this->name;
+    }
+
     public function setRequired(bool $required) {
         $this->required = $required;
         return $this;

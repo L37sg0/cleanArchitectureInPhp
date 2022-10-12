@@ -34,13 +34,17 @@ class InputFilterTest extends TestCase
         $data = [
             'id' => 1,
             'email' => 'j.d@dom.com',
-            'total' => 90.24
+            'total' => 90.24,
+            'customer' => [
+                'id' => 1
+            ]
         ];
         
         $errors = [
             'id'    => null,
             'email' => null,
-            'total' => null
+            'total' => null,
+            'customer' => null
         ];
         
         $inputFilter = new InputFilter();
@@ -49,10 +53,17 @@ class InputFilterTest extends TestCase
         $email->getValidatorChain()->attach(new EmailAddress());
         $total  = (new Input('total'))->setRequired(true);
         $total->getValidatorChain()->attach(new IsFloat());
-        $inputFilter->add($id)->add($email)->add($total);
-        
+
+
+        $customer = (new InputFilter());
+        $customerId = (new Input('id'))
+            ->setRequired(true);
+        $customer->add($customerId);
+
+        $inputFilter->add($id)->add($email)->add($total)->add($customer, 'customer');
         $inputFilter->setData($data);
-        $this->assertEquals(true, $inputFilter->isValid($value));
+var_dump($inputFilter->getFields());exit();
+        $this->assertEquals(true, $inputFilter->isValid());
         $this->assertEquals($errors, $inputFilter->getMessages());
         
     }

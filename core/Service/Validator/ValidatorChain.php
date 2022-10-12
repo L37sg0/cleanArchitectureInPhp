@@ -15,9 +15,10 @@ class ValidatorChain implements Countable, ValidatorInterface
         foreach ($this->validators as $validator) {
             if (!$validator->isValid($value)) {
                 $this->messages[] = $validator->getMessages();
-                return $this;
+                return false;
             }
         }
+        return true;
     }
     public function count()
     {
@@ -30,5 +31,6 @@ class ValidatorChain implements Countable, ValidatorInterface
 
     public function attach(ValidatorInterface $validator) {
         $this->validators[] = $validator;
+        return $this;
     }
 }

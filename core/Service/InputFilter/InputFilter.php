@@ -8,23 +8,32 @@ class InputFilter implements InputInterface
 
     protected array $messages = [];
 
-    public function add(InputInterface $field, ?string $name = null) {
-        $this->fields[$name] = $field;
-    }
+    protected array $data = [];
 
-    public function isValid($value)
-    {
-        foreach ($this->fields as $field) {
-            if (!$this->isValid($value)) {
-                $this->messages[] = $field->getMessages();
-                return $this;
-            }
+    public function add(InputInterface $field, ?string $fieldName = null) {
+        if ($fieldName) {
+            $this->fields[$fieldName] = $field;
+        } else {
+            $this->fields[] = $field;
         }
         return $this;
     }
 
-    public function getMessages()
-    {
+    public function getFields() {
+        return $this->fields;
+    }
+
+    public function setData(array $data) {
+        $this->data = $data;
+        return $this;
+    }
+
+    public function isValid($value = null) {
+
+        return true;
+    }
+
+    public function getMessages() {
         return $this->messages;
     }
 }

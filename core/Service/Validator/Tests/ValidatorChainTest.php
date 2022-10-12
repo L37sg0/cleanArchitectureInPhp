@@ -1,6 +1,6 @@
 <?php
 
-namespace L37sg0\Architecture\Service\Tests;
+namespace L37sg0\Architecture\Service\Validator\Tests;
 
 use L37sg0\Architecture\Service\Validator\ValidatorChain;
 use L37sg0\Architecture\Service\Validator\ValidatorInterface;

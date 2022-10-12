@@ -10,6 +10,7 @@ class Input implements InputInterface
     protected string $name;
 
     protected bool $required = false;
+    protected const REQUIRED_INPUT_ERROR = 'Value is required and can\'t be empty.';
 
     protected ValidatorChain $validatorChain;
 
@@ -30,6 +31,7 @@ class Input implements InputInterface
 
     public function setValidatorChain(ValidatorChain $validatorChain) {
         $this->validatorChain = $validatorChain;
+        return $this;
     }
 
     public function getValidatorChain() {
@@ -41,11 +43,19 @@ class Input implements InputInterface
 
     public function isValid($value)
     {
-        // TODO: Implement isValid() method.
+        if ($this->required && empty((string)$value)){
+            $this->messages['isEmpty'] = self::REQUIRED_INPUT_ERROR;
+            return false;
+        }
+        if (!$this->getValidatorChain()->isValid($value)) {
+            $this->messages = $this->validatorChain->getMessages();
+            return false;
+        }
+        return true;
     }
 
     public function getMessages()
     {
-        // TODO: Implement getMessages() method.
+        return $this->messages;
     }
 }

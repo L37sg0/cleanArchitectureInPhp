@@ -4,13 +4,21 @@ namespace L37sg0\Architecture\Service\Validator;
 
 class EmailAddress implements ValidatorInterface
 {
+    protected $messages = [];
+
+    protected const EMAIL_NOT_VALID = '%s is not a valid email address!';
+
     public function isValid($value)
     {
-        // TODO: Implement isValid() method.
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            $this->messages['emailNotValid'] = sprintf(self::EMAIL_NOT_VALID, $value);
+            return false;
+        }
+        return true;
     }
 
     public function getMessages()
     {
-        // TODO: Implement getMessages() method.
+        return $this->messages;
     }
 }

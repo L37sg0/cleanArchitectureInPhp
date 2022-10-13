@@ -52,13 +52,13 @@ class ClassMethodsHydrator implements HydratorInterface
 
         foreach ($methods as $method) {
             if (strpos($method, 'get') === 0) {
-                $attribute = substr($method, 3);
+                $attribute = lcfirst(substr($method, 3));
                 $value = $object->$method();
                 /** @var StrategyInterface $strategy */
                 if ($strategy = $this->strategies[$attribute]) {
                     $value = $strategy->extract($value);
                 }
-                $data[lcfirst($attribute)]  = $value;
+                $data[$attribute]  = $value;
             }
         }
 

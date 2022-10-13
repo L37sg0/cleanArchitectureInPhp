@@ -2,10 +2,8 @@
 
 namespace L37sg0\Architecture\Service\InputFilter;
 
-use Laminas\I18n\Validator\IsFloat;
-use Laminas\InputFilter\Input;
-use Laminas\InputFilter\InputFilter;
-use Laminas\Validator\StringLength;
+use L37sg0\Architecture\Service\Validator\IsFloat;
+use L37sg0\Architecture\Service\Validator\StringLength;
 
 class OrderInputFilter extends InputFilter
 {

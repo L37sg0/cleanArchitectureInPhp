@@ -75,13 +75,25 @@ class InputFilterTest extends TestCase
         $data = [
             'id' => '',
             'email' => 'j.d.dom.com',
-            'total' => 'notsofloat'
+            'total' => 'notsofloat',
+            'customer' => [
+                'id' => '',
+                'order' => [
+                    'orderId' => ''
+                ]
+            ]
         ];
 
         $errors = [
-            'id' => ['isEmpty' => 'Value is required and can\'t be empty.'],
-            'email' => ['emailNotValid' => 'j.d.dom.com is not a valid email address!'],
-            'total' => ['notFloat' => 'The input does not appear to be a float.']
+            'id' => [['isEmpty' => 'Value is required and can\'t be empty.']],
+            'email' => [['emailNotValid' => 'j.d.dom.com is not a valid email address!']],
+            'total' => [['notFloat' => 'The input does not appear to be a float.']],
+            'customer'  => [
+                'id' => [['isEmpty' => 'Value is required and can\'t be empty.']],
+                'order' =>[
+                    'orderId' => [['isEmpty' => 'Value is required and can\'t be empty.']]
+                ]
+            ]
         ];
 
         $inputFilter = new InputFilter();
@@ -91,10 +103,15 @@ class InputFilterTest extends TestCase
         $total = (new Input('total'))->setRequired(true);
         $total->getValidatorChain()->attach(new IsFloat());
 
-        $inputFilter->add($id)->add($email)->add($total);
+        $customer = (new InputFilter())->add((new Input('id'))->setRequired(true));
+        $order = (new InputFilter())->add((new Input('orderId'))->setRequired(true));
+        $customer->add($order, 'order');
+
+        $inputFilter->add($id)->add($email)->add($total)->add($customer, 'customer');
         $inputFilter->setData($data);
 
         $this->assertEquals(false, $inputFilter->isValid());
+//        var_dump($errors, $inputFilter->getMessages());
         $this->assertEquals($errors, $inputFilter->getMessages());
 
     }

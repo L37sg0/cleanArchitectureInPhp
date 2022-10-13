@@ -2,6 +2,8 @@
 
 namespace L37sg0\Architecture\Service\InputFilter;
 
+use Error;
+
 class InputFilter implements InputFilterInterface
 {
     protected array $inputs = [];
@@ -11,12 +13,18 @@ class InputFilter implements InputFilterInterface
     protected array $data = [];
 
     public function add($input, ?string $inputName = null) {
-        if ($inputName) {
-            $this->inputs[$inputName] = $input;
-        } else {
+        if ($input instanceof InputInterface) {
             $this->inputs[$input->getName()] = $input;
+            return $this;
         }
-        return $this;
+        if ($input instanceof InputFilterInterface) {
+            if ($inputName) {
+                $this->inputs[$inputName] = $input;
+                return $this;
+            }
+            throw new Error('inputName should be provided for input of type InputFilterInterface.');
+        }
+        throw new Error('input should be instance of InputInterface or InputFilterInterface.');
     }
 
     public function getInputs() {
@@ -30,6 +38,9 @@ class InputFilter implements InputFilterInterface
 
     public function isValid($value = null) {
         foreach ($this->inputs as $inputName => $inputValidator) {
+            if ($inputValidator instanceof InputFilterInterface) {
+                $inputValidator->setData($this->data[$inputName]);
+            }
             if (!$inputValidator->isValid($this->data[$inputName])) {
                 $this->messages[$inputName] = $inputValidator->getMessages()[0];
             }

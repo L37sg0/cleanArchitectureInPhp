@@ -67,9 +67,15 @@ class ClassMethodsHydrator implements HydratorInterface
 
     public function addStrategy($name, StrategyInterface $strategy) {
         $this->strategies[$name] = $strategy;
+        return $this;
     }
 
     public function removeStrategy($name) {
         unset($this->strategies[$name]);
+        return $this;
+    }
+
+    public function getStrategies() {
+        return $this->strategies;
     }
 }

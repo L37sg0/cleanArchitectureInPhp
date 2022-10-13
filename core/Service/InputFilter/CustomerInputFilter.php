@@ -2,9 +2,7 @@
 
 namespace L37sg0\Architecture\Service\InputFilter;
 
-use Laminas\InputFilter\Input;
-use Laminas\InputFilter\InputFilter;
-use Laminas\Validator\EmailAddress;
+use L37sg0\Architecture\Service\Validator\EmailAddress;
 
 class CustomerInputFilter extends InputFilter
 {

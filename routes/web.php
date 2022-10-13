@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Customers;
+use App\Http\Controllers\Orders;
+use App\Http\Controllers\Invoices;
 use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Dashboard::class, 'indexAction']);
-Route::get('/customers', [Dashboard::class, 'indexAction']);
-Route::get('/orders', [Dashboard::class, 'indexAction']);
-Route::get('/invoices', [Dashboard::class, 'indexAction']);
+Route::get('/customers', [Customers::class, 'indexAction']);
+Route::match(
+    ['get', 'post'],
+    '/customers/new',
+    [Customers::class, 'newOrEditAction']
+);
+Route::match(
+    ['get', 'post'],
+    '/customers/new{id}',
+    [Customers::class, 'newOrEditAction']
+);
+Route::get('/orders', [Orders::class, 'indexAction']);
+Route::get('/invoices', [Invoices::class, 'indexAction']);

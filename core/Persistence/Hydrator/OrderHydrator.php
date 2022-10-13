@@ -3,7 +3,6 @@
 namespace L37sg0\Architecture\Persistence\Hydrator;
 
 use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
-use Laminas\Hydrator\HydratorInterface;
 
 class OrderHydrator implements HydratorInterface
 {

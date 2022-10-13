@@ -5,8 +5,6 @@ namespace L37sg0\Architecture\Persistence\Hydrator;
 use L37sg0\Architecture\Domain\Entity\Order;
 use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Persistence\Hydrator\Strategy\DateStrategy;
-use Laminas\Hydrator\ClassMethodsHydrator;
-use Laminas\Hydrator\HydratorInterface;
 
 class InvoiceHydrator implements HydratorInterface
 {

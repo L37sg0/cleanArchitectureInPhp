@@ -111,8 +111,36 @@ class InputFilterTest extends TestCase
         $inputFilter->setData($data);
 
         $this->assertEquals(false, $inputFilter->isValid());
-//        var_dump($errors, $inputFilter->getMessages());
         $this->assertEquals($errors, $inputFilter->getMessages());
 
+    }
+
+    public function testGetValues() {
+        $data = [
+            'id' => '',
+            'email' => 'j.d.dom.com',
+            'total' => 'notsofloat',
+            'customer' => [
+                'id' => '',
+                'order' => [
+                    'orderId' => ''
+                ]
+            ]
+        ];
+        $inputFilter = new InputFilter();
+        $id = (new Input('id'))->setRequired(true);
+        $email = (new Input('email'))->setRequired(true);
+        $email->getValidatorChain()->attach(new EmailAddress());
+        $total = (new Input('total'))->setRequired(true);
+        $total->getValidatorChain()->attach(new IsFloat());
+
+        $customer = (new InputFilter())->add((new Input('id'))->setRequired(true));
+        $order = (new InputFilter())->add((new Input('orderId'))->setRequired(true));
+        $customer->add($order, 'order');
+
+        $inputFilter->add($id)->add($email)->add($total)->add($customer, 'customer');
+        $inputFilter->setData($data);
+
+        $this->assertEquals($data, $inputFilter->getValues());
     }
 }

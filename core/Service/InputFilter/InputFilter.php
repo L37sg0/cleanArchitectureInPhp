@@ -42,7 +42,7 @@ class InputFilter implements InputFilterInterface
                 $inputValidator->setData($this->data[$inputName]);
             }
             if (!$inputValidator->isValid($this->data[$inputName])) {
-                $this->messages[$inputName] = $inputValidator->getMessages();//[0];
+                $this->messages[$inputName] = $inputValidator->getMessages();
             }
         }
         if (!empty($this->messages)) {
@@ -56,5 +56,9 @@ class InputFilter implements InputFilterInterface
 
     public function getMessages() {
         return $this->messages;
+    }
+
+    public function getValues() {
+        return $this->data;
     }
 }

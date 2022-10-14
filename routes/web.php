@@ -30,4 +30,10 @@ Route::match(
     [Customers::class, 'newOrEditAction']
 );
 Route::get('/orders', [Orders::class, 'indexAction']);
+Route::match(
+    ['get', 'post'],
+    '/orders/new',
+    [Orders::class, 'newAction']
+);
+Route::get('/orders/view/{id}', [Orders::class, 'viewAction']);
 Route::get('/invoices', [Invoices::class, 'indexAction']);

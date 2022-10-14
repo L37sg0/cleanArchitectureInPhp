@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2761a84e5d5cd7ea9a3d8a3ca6d097c4",
+    "content-hash": "18eccf09a2962c88a7e150408888f3c2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6425,6 +6425,57 @@
                 }
             ],
             "time": "2021-12-12T23:22:04+00:00"
+        },
+        {
+            "name": "vnn/keyper",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/varsitynewsnetwork/keyper.git",
+                "reference": "cd6c4cea15d7e4480bc8ca98df77c4f8ba882e84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/varsitynewsnetwork/keyper/zipball/cd6c4cea15d7e4480bc8ca98df77c4f8ba882e84",
+                "reference": "cd6c4cea15d7e4480bc8ca98df77c4f8ba882e84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Vnn": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Austin Morris",
+                    "email": "austin.morris@gmail.com"
+                },
+                {
+                    "name": "Brian Scaturro",
+                    "email": "scaturrob@gmail.com"
+                }
+            ],
+            "description": "Do things based on the presence of a key",
+            "keywords": [
+                "array",
+                "function"
+            ],
+            "support": {
+                "issues": "https://github.com/varsitynewsnetwork/keyper/issues",
+                "source": "https://github.com/varsitynewsnetwork/keyper/tree/master"
+            },
+            "time": "2015-09-24T19:08:48+00:00"
         },
         {
             "name": "voku/portable-ascii",

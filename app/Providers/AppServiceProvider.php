@@ -10,6 +10,8 @@ use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Persistence\Doctrine\Repository\CustomerRepository;
 use L37sg0\Architecture\Persistence\Doctrine\Repository\InvoiceRepository;
 use L37sg0\Architecture\Persistence\Doctrine\Repository\OrderRepository;
+use L37sg0\Architecture\Persistence\Hydrator\ClassMethodsHydrator;
+use L37sg0\Architecture\Persistence\Hydrator\HydratorInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +44,12 @@ class AppServiceProvider extends ServiceProvider
                 return new InvoiceRepository(
                     $app[EntityManagerInterface::class]
                 );
+            }
+        );
+        $this->app->bind(
+            HydratorInterface::class,
+            function ($app) {
+                return new ClassMethodsHydrator();
             }
         );
     }

@@ -26,7 +26,7 @@ Route::match(
 );
 Route::match(
     ['get', 'post'],
-    '/customers/new{id}',
+    '/customers/edit/{id}',
     [Customers::class, 'newOrEditAction']
 );
 Route::get('/orders', [Orders::class, 'indexAction']);

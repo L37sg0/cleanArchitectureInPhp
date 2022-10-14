@@ -26,7 +26,8 @@ class ClassMethodsHydrator implements HydratorInterface
                 if (array_key_exists($attribute, $data)) {
                     $value = $data[$attribute];
                     /** @var StrategyInterface $strategy */
-                    if ($strategy = $this->strategies[$attribute]) {
+                    if (array_key_exists($attribute, $this->strategies)) {
+                        $strategy = $this->strategies[$attribute];
                         $value = $strategy->hydrate($value);
                     }
                     $object->$method($value);
@@ -55,7 +56,8 @@ class ClassMethodsHydrator implements HydratorInterface
                 $attribute = lcfirst(substr($method, 3));
                 $value = $object->$method();
                 /** @var StrategyInterface $strategy */
-                if ($strategy = $this->strategies[$attribute]) {
+                if (array_key_exists($attribute, $this->strategies)) {
+                    $strategy = $this->strategies[$attribute];
                     $value = $strategy->extract($value);
                 }
                 $data[$attribute]  = $value;

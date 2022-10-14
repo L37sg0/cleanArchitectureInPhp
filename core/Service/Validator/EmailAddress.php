@@ -6,7 +6,7 @@ class EmailAddress implements ValidatorInterface
 {
     protected $messages = [];
 
-    protected const EMAIL_NOT_VALID = '%s is not a valid email address!';
+    protected const EMAIL_NOT_VALID = '%s is not a valid email address.';
 
     public function isValid($value)
     {

@@ -24,7 +24,7 @@ class ValidatorsTest extends TestCase
     public function testEmailValidatorFalse() {
         $emailValidator1 = $this->createMock(ValidatorInterface::class);
         $emailValidator1->method('isValid')->willReturn(false)->with('jd.yahoo.com');
-        $emailValidator1->method('getMessages')->willReturn(['emailNotValid' => 'jd.yahoo.com is not a valid email address!']);
+        $emailValidator1->method('getMessages')->willReturn(['emailNotValid' => 'jd.yahoo.com is not a valid email address.']);
 
         $emailValidator2 = new EmailAddress();
 

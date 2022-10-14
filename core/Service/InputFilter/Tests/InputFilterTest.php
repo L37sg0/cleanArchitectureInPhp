@@ -86,7 +86,7 @@ class InputFilterTest extends TestCase
 
         $errors = [
             'id' => [['isEmpty' => 'Value is required and can\'t be empty.']],
-            'email' => [['emailNotValid' => 'j.d.dom.com is not a valid email address!']],
+            'email' => [['emailNotValid' => 'j.d.dom.com is not a valid email address.']],
             'total' => [['notFloat' => 'The input does not appear to be a float.']],
             'customer'  => [
                 'id' => [['isEmpty' => 'Value is required and can\'t be empty.']],

@@ -2,7 +2,10 @@
 
 namespace L37sg0\Architecture\Service\Validator\Tests;
 
+use L37sg0\Architecture\Domain\Entity\AbstractEntity;
+use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
 use L37sg0\Architecture\Service\Validator\EmailAddress;
+use L37sg0\Architecture\Service\Validator\EntityExist;
 use L37sg0\Architecture\Service\Validator\IsFloat;
 use L37sg0\Architecture\Service\Validator\StringLength;
 use L37sg0\Architecture\Service\Validator\ValidatorInterface;
@@ -81,5 +84,21 @@ class ValidatorsTest extends TestCase
 
         $this->assertEquals($stringLengthValidator1->isValid('1234abc'), $stringLengthValidator2->isValid('1234abc'));
         $this->assertEquals($stringLengthValidator1->getMessages(), $stringLengthValidator2->getMessages());
+    }
+
+    public function testCanCreateEntityExistValidator() {
+        $repository = $this->createMock(RepositoryInterface::class);
+        $actual = new EntityExist('id', $repository);
+        $expected = ValidatorInterface::class;
+        $expected2 = EntityExist::class;
+        
+        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf($expected2, $actual);
+    }
+
+    public function testEntityExistValidatorTrue() {
+        $entity = $this->createMock(AbstractEntity::class);
+        $repository = $this->createMock(RepositoryInterface::class);
+        $repository->method('getBy')->with(['id' => 1])->willReturn($entity);
     }
 }

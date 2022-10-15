@@ -9,14 +9,12 @@
             <label for="customer_id">Customer:</label>
             <select class="form-control" name="customer[id]" id="customer_id">
                 <option value=""></option>
-                <?php foreach ($customers as $customer): ?>
-                <option value="{{{ $customer->getId() }}}"<?=
-                                                              !is_null($order->getCustomer()) &&
-                                                              $order->getCustomer()->getId() == $customer->getId() ?
-                                                                  ' selected="selected"' : '' ?>>
-                    {{{ $customer->getName() }}}
+                @foreach($customers as $customer):
+                <option value="{{$customer->getId()}}"
+                        {{!is_null($order->getCustomer()) && $order->getCustomer()->getId() == $customer->getId() ? 'selected="selected"' : ''}}>
+                    {{$customer->getName()}}
                 </option>
-                <?php endforeach; ?>
+                @endforeach
             </select>
             @include(
             'validation-errors',

@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
+use L37sg0\Architecture\Domain\Entity\Customer;
 use L37sg0\Architecture\Domain\Entity\Order;
 use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
 use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
@@ -47,14 +48,14 @@ class Orders extends Controller implements IndexInterface
 
             if ($this->inputFilter->isValid()) {
                 $order = $this->hydrator->hydrate($this->inputFilter->getValues(), $order);
-
                 $this->orderRepository->begin()->persist($order)->commit();
-
                 Session::flash('success', 'Order Saved');
 
                 return new RedirectResponse('/orders/view/' . $order->getId());
             } else {
-                $this->hydrator->hydrate($request->request->all(), $order);
+                $customer = $this->hydrator->hydrate($request->request->all()['customer'], new Customer());
+                $order = $this->hydrator->hydrate($request->request->all(), $order);
+                $order->setCustomer($customer);
                 $viewModel['error'] = $this->inputFilter->getMessages();
             }
         }

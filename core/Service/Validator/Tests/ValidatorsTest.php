@@ -4,8 +4,10 @@ namespace L37sg0\Architecture\Service\Validator\Tests;
 
 use L37sg0\Architecture\Domain\Entity\AbstractEntity;
 use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
+use L37sg0\Architecture\Persistence\Doctrine\Repository\CustomerRepository;
 use L37sg0\Architecture\Service\Validator\EmailAddress;
 use L37sg0\Architecture\Service\Validator\EntityExist;
+use L37sg0\Architecture\Service\Validator\EntityUnique;
 use L37sg0\Architecture\Service\Validator\IsFloat;
 use L37sg0\Architecture\Service\Validator\StringLength;
 use L37sg0\Architecture\Service\Validator\ValidatorInterface;
@@ -99,6 +101,59 @@ class ValidatorsTest extends TestCase
     public function testEntityExistValidatorTrue() {
         $entity = $this->createMock(AbstractEntity::class);
         $repository = $this->createMock(RepositoryInterface::class);
-        $repository->method('getBy')->with(['id' => 1])->willReturn($entity);
+        $repository->method('getBy')->with(['id' => 1])->willReturn([$entity]);
+
+        $validator = new EntityExist('id', $repository);
+        $this->assertEquals(true, $validator->isValid(1));
+        $this->assertEquals([], $validator->getMessages());
+    }
+
+    public function testEntityExistValidatorFalse() {
+        $repository = $this->createMock(RepositoryInterface::class);
+        $repository->method('getBy')->with(['id' => 1])->willReturn([]);
+
+        $validator = new EntityExist('id', $repository);
+        $validator2 = new EntityExist('id', $repository, 'uSer');
+
+        $this->assertEquals(false, $validator->isValid(1));
+        $this->assertEquals(['entityNotValid' => 'Entity with such id does not exist.'], $validator->getMessages());
+        $this->assertEquals(false, $validator2->isValid(1));
+        $this->assertEquals(['entityNotValid' => 'User with such id does not exist.'], $validator2->getMessages());
+    }
+
+    public function testCanCreateEntityUniqueValidator()
+    {
+        $repository = $this->createMock(RepositoryInterface::class);
+        $actual = new EntityUnique('email', $repository);
+        $expected = ValidatorInterface::class;
+        $expected2 = EntityUnique::class;
+
+        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf($expected2, $actual);
+    }
+
+    public function testEntityUniqueValidatorTrue()
+    {
+        $repository = $this->createMock(RepositoryInterface::class);
+        $repository->method('getBy')->with(['email' => 'john.wick@abudabi.com'])->willReturn([]);
+
+        $validator = new EntityUnique('email', $repository);
+        $this->assertEquals(true, $validator->isValid('john.wick@abudabi.com'));
+        $this->assertEquals([], $validator->getMessages());
+    }
+
+    public function testEntityUniqueValidatorFalse()
+    {
+        $entity = $this->createMock(AbstractEntity::class);
+        $repository = $this->createMock(RepositoryInterface::class);
+        $repository->method('getBy')->with(['email' => 'john.wick@abudabi.com'])->willReturn([$entity]);
+
+        $validator = new EntityUnique('email', $repository);
+        $validator2 = new EntityUnique('email', $repository, 'uSer');
+
+        $this->assertEquals(false, $validator->isValid('john.wick@abudabi.com'));
+        $this->assertEquals(['entityNotUnique' => 'Entity with such email already exist.'], $validator->getMessages());
+        $this->assertEquals(false, $validator2->isValid('john.wick@abudabi.com'));
+        $this->assertEquals(['entityNotUnique' => 'User with such email already exist.'], $validator2->getMessages());
     }
 }

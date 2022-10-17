@@ -37,3 +37,6 @@ Route::match(
 );
 Route::get('/orders/view/{id}', [Orders::class, 'viewAction']);
 Route::get('/invoices', [Invoices::class, 'indexAction']);
+Route::get('/invoices/view/{id}', [Invoices::class, 'viewAction']);
+Route::get('/invoices/new', [Invoices::class, 'newAction']);
+Route::post('/invoices/generate', [Invoices::class, 'generateAction']);

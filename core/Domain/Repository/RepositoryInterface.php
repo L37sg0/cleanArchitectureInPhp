@@ -10,6 +10,8 @@ interface RepositoryInterface
 
     public function getAll();
 
+    public function getBy($conditions = [], $order = [], $limit = null, $offset = null);
+
     public function persist(AbstractEntity $entity);
 
     public function begin();

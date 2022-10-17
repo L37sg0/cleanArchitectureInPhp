@@ -19,7 +19,7 @@
             :
             <tr>
                 <td>
-                    <a href="/orders/edit/{{{ $order->getId() }}}">
+                    <a href="/orders/view/{{{ $order->getId() }}}">
                         {{{ $order->getId() }}}</a>
                 </td>
                 <td>{{{ $order->getCustomer()->getName() }}}</td>

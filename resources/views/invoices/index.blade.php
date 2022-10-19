@@ -18,7 +18,7 @@
             :
             <tr>
                 <td>
-                    <a href="/invoices/edit/{{{ $invoice->getId() }}}">
+                    <a href="/invoices/view/{{{ $invoice->getId() }}}">
                         {{{ $invoice->getId() }}}</a>
                 </td>
                 <td>{{{ $invoice->getOrder()->getOrderNumber() }}}</td>

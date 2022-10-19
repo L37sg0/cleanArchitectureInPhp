@@ -26,8 +26,17 @@ Route::match(
 );
 Route::match(
     ['get', 'post'],
-    '/customers/new{id}',
+    '/customers/edit/{id}',
     [Customers::class, 'newOrEditAction']
 );
 Route::get('/orders', [Orders::class, 'indexAction']);
+Route::match(
+    ['get', 'post'],
+    '/orders/new',
+    [Orders::class, 'newAction']
+);
+Route::get('/orders/view/{id}', [Orders::class, 'viewAction']);
 Route::get('/invoices', [Invoices::class, 'indexAction']);
+Route::get('/invoices/view/{id}', [Invoices::class, 'viewAction']);
+Route::get('/invoices/new', [Invoices::class, 'newAction']);
+Route::post('/invoices/generate', [Invoices::class, 'generateAction']);

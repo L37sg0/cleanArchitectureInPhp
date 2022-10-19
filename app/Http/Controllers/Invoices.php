@@ -57,6 +57,6 @@ class Invoices extends Controller implements IndexInterface
 
         $this->invoiceRepository->commit();
 
-        return view('invoices.generate', compact($invoices));
+        return view('invoices.generate', compact('invoices'));
     }
 }

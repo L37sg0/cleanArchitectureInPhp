@@ -19,13 +19,13 @@ class DummyEntity
         return $this->name;
     }
 
-    public function setDate(DateTime $date)
+    public function setDummyDate(DateTime $date)
     {
         $this->date = $date;
         return $this;
     }
 
-    public function getDate(): DateTime
+    public function getDummyDate(): DateTime
     {
         return $this->date;
     }

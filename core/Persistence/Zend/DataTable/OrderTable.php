@@ -2,7 +2,7 @@
 
 namespace L37sg0\Architecture\Persistence\Zend\DataTable;
 
-use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
+use Tests\InputFilter\Domain\Repository\OrderRepositoryInterface;
 
 class OrderTable extends AbstractDataTable implements OrderRepositoryInterface
 {

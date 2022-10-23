@@ -2,10 +2,9 @@
 
 namespace L37sg0\Architecture\Persistence\Doctrine\Repository;
 
-use L37sg0\Architecture\Domain\Entity\Invoice;
-use L37sg0\Architecture\Domain\Repository\InvoiceRepositoryInterface;
+use Tests\InputFilter\Domain\Entity\Invoice;
 
-class InvoiceRepository extends AbstractDoctrineRepository implements InvoiceRepositoryInterface
+class InvoiceRepository extends AbstractDoctrineRepository implements \Tests\InputFilter\Domain\Repository\InvoiceRepositoryInterface
 {
     protected string $entityClass = Invoice::class;
 }

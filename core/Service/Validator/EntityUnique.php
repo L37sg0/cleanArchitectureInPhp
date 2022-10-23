@@ -2,7 +2,7 @@
 
 namespace L37sg0\Architecture\Service\Validator;
 
-use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
+use Tests\InputFilter\Domain\Repository\RepositoryInterface;
 
 class EntityUnique implements ValidatorInterface
 {

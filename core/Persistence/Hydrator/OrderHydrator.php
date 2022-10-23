@@ -2,7 +2,7 @@
 
 namespace L37sg0\Architecture\Persistence\Hydrator;
 
-use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
+use Tests\InputFilter\Domain\Repository\CustomerRepositoryInterface;
 
 class OrderHydrator implements HydratorInterface
 {

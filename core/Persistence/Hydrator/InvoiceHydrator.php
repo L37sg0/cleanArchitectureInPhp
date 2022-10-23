@@ -2,9 +2,9 @@
 
 namespace L37sg0\Architecture\Persistence\Hydrator;
 
-use L37sg0\Architecture\Domain\Entity\Order;
-use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Persistence\Hydrator\Strategy\DateStrategy;
+use Tests\InputFilter\Domain\Entity\Order;
+use Tests\InputFilter\Domain\Repository\OrderRepositoryInterface;
 
 class InvoiceHydrator implements HydratorInterface
 {

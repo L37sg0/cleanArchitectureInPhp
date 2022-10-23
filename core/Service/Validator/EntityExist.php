@@ -2,7 +2,7 @@
 
 namespace L37sg0\Architecture\Service\Validator;
 
-use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
+use Tests\InputFilter\Domain\Repository\RepositoryInterface;
 
 /**
  * EntityExist validator will check if Entity Repository could return Entity where $field = inserted $value.

@@ -2,10 +2,10 @@
 
 namespace L37sg0\Architecture\Persistence\Zend\DataTable;
 
-use L37sg0\Architecture\Domain\Entity\AbstractEntity;
-use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
 use Laminas\Db\TableGateway\TableGateway;
 use Laminas\Hydrator\HydratorInterface;
+use Tests\InputFilter\Domain\Entity\AbstractEntity;
+use Tests\InputFilter\Domain\Repository\RepositoryInterface;
 
 abstract class AbstractDataTable implements RepositoryInterface
 {

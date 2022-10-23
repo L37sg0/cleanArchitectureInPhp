@@ -3,9 +3,9 @@
 namespace L37sg0\Architecture\Persistence\Doctrine\Repository;
 
 use Doctrine\ORM\EntityManager;
-use L37sg0\Architecture\Domain\Entity\AbstractEntity;
-use L37sg0\Architecture\Domain\Repository\RepositoryInterface;
 use RuntimeException;
+use Tests\InputFilter\Domain\Entity\AbstractEntity;
+use Tests\InputFilter\Domain\Repository\RepositoryInterface;
 
 class AbstractDoctrineRepository implements RepositoryInterface
 {

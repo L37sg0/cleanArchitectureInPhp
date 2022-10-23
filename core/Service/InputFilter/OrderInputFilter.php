@@ -2,12 +2,12 @@
 
 namespace L37sg0\Architecture\Service\InputFilter;
 
-use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
-use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
 use L37sg0\Architecture\Service\Validator\EntityExist;
 use L37sg0\Architecture\Service\Validator\EntityUnique;
 use L37sg0\Architecture\Service\Validator\IsFloat;
 use L37sg0\Architecture\Service\Validator\StringLength;
+use Tests\InputFilter\Domain\Repository\CustomerRepositoryInterface;
+use Tests\InputFilter\Domain\Repository\OrderRepositoryInterface;
 
 class OrderInputFilter extends InputFilter
 {

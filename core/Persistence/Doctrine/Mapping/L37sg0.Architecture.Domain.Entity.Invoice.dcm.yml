@@ -16,5 +16,5 @@ L37sg0\Architecture\Domain\Entity\Invoice:
       scale: 2
   manyToOne:
     order:
-      targetEntity: L37sg0\Architecture\Domain\Entity\Order
+      targetEntity: Tests\InputFilter\Domain\Entity\Order
       inversedBy: invoices

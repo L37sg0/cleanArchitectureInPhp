@@ -17,5 +17,5 @@ L37sg0\Architecture\Domain\Entity\Order:
       scale: 2
   manyToOne:
     customer:
-      targetEntity: L37sg0\Architecture\Domain\Entity\Customer
+      targetEntity: Tests\InputFilter\Domain\Entity\Customer
       inversedBy: orders

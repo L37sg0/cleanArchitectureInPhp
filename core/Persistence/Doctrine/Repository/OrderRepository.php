@@ -3,11 +3,10 @@
 namespace L37sg0\Architecture\Persistence\Doctrine\Repository;
 
 use Doctrine\ORM\Query\Expr\Join;
-use L37sg0\Architecture\Domain\Entity\Invoice;
-use L37sg0\Architecture\Domain\Entity\Order;
-use L37sg0\Architecture\Domain\Repository\OrderRepositoryInterface;
+use Tests\InputFilter\Domain\Entity\Invoice;
+use Tests\InputFilter\Domain\Entity\Order;
 
-class OrderRepository extends AbstractDoctrineRepository implements OrderRepositoryInterface
+class OrderRepository extends AbstractDoctrineRepository implements \Tests\InputFilter\Domain\Repository\OrderRepositoryInterface
 {
     protected string $entityClass = Order::class;
 

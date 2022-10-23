@@ -2,8 +2,8 @@
 
 namespace L37sg0\Architecture\Persistence\Doctrine\Repository;
 
-use L37sg0\Architecture\Domain\Entity\Customer;
-use L37sg0\Architecture\Domain\Repository\CustomerRepositoryInterface;
+use Tests\InputFilter\Domain\Entity\Customer;
+use Tests\InputFilter\Domain\Repository\CustomerRepositoryInterface;
 
 class CustomerRepository extends AbstractDoctrineRepository implements CustomerRepositoryInterface
 {

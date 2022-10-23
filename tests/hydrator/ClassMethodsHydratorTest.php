@@ -45,12 +45,12 @@ class ClassMethodsHydratorTest extends TestCase
         $strategy = new DateStrategy();
 
         $entity = new DummyEntity();
-        $entity->setName('dummy')->setDate(new DateTime('2022-10-13'));
+        $entity->setName('dummy')->setDummyDate(new DateTime('2022-10-13'));
 
-        $actual = $hydrator->addStrategy('date', $strategy)->extract($entity);
+        $actual = $hydrator->addStrategy('dummy_date', $strategy)->extract($entity);
         $expected = [
             'name' => 'dummy',
-            'date' => '2022-10-13'
+            'dummy_date' => '2022-10-13'
         ];
 
         $this->assertEquals($expected, $actual);
@@ -64,13 +64,13 @@ class ClassMethodsHydratorTest extends TestCase
 
         $data = [
             'name' => 'dummy',
-            'date' => '2022-10-13'
+            'dummy_date' => '2022-10-13'
         ];
 
-        $actual = $hydrator->addStrategy('date', $strategy)->hydrate($data, new DummyEntity());
+        $actual = $hydrator->addStrategy('dummy_date', $strategy)->hydrate($data, new DummyEntity());
 
         $expected = new DummyEntity();
-        $expected->setName('dummy')->setDate(new DateTime('2022-10-13'));
+        $expected->setName('dummy')->setDummyDate(new DateTime('2022-10-13'));
 
         $this->assertEquals($expected, $actual);
     }

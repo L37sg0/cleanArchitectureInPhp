@@ -1,6 +1,6 @@
 <?php
 
-namespace L37sg0\Architecture\Persistence\Hydrator\Strategy\Tests;
+namespace Tests\hydrator\strategy;
 
 use DateTime;
 use L37sg0\Architecture\Persistence\Hydrator\Strategy\DateStrategy;

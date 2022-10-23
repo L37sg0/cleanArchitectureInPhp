@@ -1,6 +1,6 @@
 <?php
 
-namespace L37sg0\Architecture\Persistence\Hydrator\Tests;
+namespace Tests\hydrator;
 
 use DateTime;
 use L37sg0\Architecture\Persistence\Hydrator\ClassMethodsHydrator;

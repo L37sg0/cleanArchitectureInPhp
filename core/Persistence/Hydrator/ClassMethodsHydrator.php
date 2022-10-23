@@ -22,7 +22,7 @@ class ClassMethodsHydrator implements HydratorInterface
 
         foreach ($methods as $method) {
             if (strpos($method, 'set') === 0) {
-                $attribute = $this->camelToSnakeCase(lcfirst(substr($method, 3)));
+                $attribute = $this->camelToSnakeCase(substr($method, 3));
                 if (array_key_exists($attribute, $data)) {
                     $value = $data[$attribute];
                     /** @var StrategyInterface $strategy */
@@ -53,7 +53,7 @@ class ClassMethodsHydrator implements HydratorInterface
 
         foreach ($methods as $method) {
             if (strpos($method, 'get') === 0) {
-                $attribute = $this->camelToSnakeCase(lcfirst(substr($method, 3)));
+                $attribute = $this->camelToSnakeCase(substr($method, 3));
                 $value = $object->$method();
                 /** @var StrategyInterface $strategy */
                 if (array_key_exists($attribute, $this->strategies)) {

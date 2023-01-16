@@ -67,10 +67,14 @@ class CustomerInputFilterTest extends TestCase
     }
 
 //    public function testShouldRequireUniqueEmail() {
-////        $dataUnique = ['email' =>'bob@bbb.com'];
-//        $dataNotUnique = ['name'=> 'biily bob', 'email' => 'billy.bob@bbb.com'];
+//        $dataUnique = ['name' => 'gadinata', 'email' =>'bob@bbb.com'];
+////        $dataNotUnique = ['email' => 'billy.bob@bbb.com'];
 //
 //        $repository = $this->createMock(CustomerRepositoryInterface::class);
+//        $repository->method('getBy')->with($dataUnique, [], null, null)->willReturn([]);
+//        $inputFilter1 = new CustomerInputFilter($repository);
+//        $inputFilter1->setData($dataUnique);
+//        var_dump($inputFilter1->isValid(), $inputFilter1->getMessages());
 //
 ////        $repository->method('getBy')->willReturn([])->with($dataUnique);
 ////        $inputFilter1 = new CustomerInputFilter($repository);
@@ -78,14 +82,14 @@ class CustomerInputFilterTest extends TestCase
 //
 ////        $this->assertTrue($inputFilter1->isValid());
 ////        $this->assertEquals([[]], $inputFilter1->getMessages());
-//
-//        $repository->method('getBy')->willReturn([new Customer()])->with($dataNotUnique);
-//        $inputFilter2 = new CustomerInputFilter($repository);
-//        $inputFilter2->setData($dataNotUnique);
-//
-////        $this->assertFalse($inputFilter2->isValid());
-//        $inputFilter2->isValid();
-//        $this->assertEquals([['entityNotUnique' => 'Customer with such email already exist.']], $inputFilter2->getMessages());
+////
+////        $repository->method('getBy')->willReturn([new Customer()])->with($dataNotUnique);
+////        $inputFilter2 = new CustomerInputFilter($repository);
+////        $inputFilter2->setData($dataNotUnique);
+////
+//////        $this->assertFalse($inputFilter2->isValid());
+////        $inputFilter2->isValid();
+////        $this->assertEquals([['entityNotUnique' => 'Customer with such email already exist.']], $inputFilter2->getMessages());
 //
 //    }
 }
